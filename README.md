@@ -30,11 +30,9 @@ Incito is the Ideathon organized by Microsoft Lab. It is a conglomerate of brill
 # Getting your dev env setup.
 
 1. Clone the repository after forking with `git clone https://github.com/yourusername/Mlab_website.git`
-2. Start xampp/lampp services with
-   `sudo /opt/lampp/lampp start`
-3. Copy website to htdocs folder with
-   `sudo cp -r Mlab_website /opt/lampp/htdocs/`
-4. Access website from localhost `http://localhost/Mlab_website/`
+2. Run a HTTP server from within the directory using python3, xampp or any other utility.\ 
+Example: ```python3 -m http.server 8080```
+3. Access website from `http://localhost:port` where `port` is the listening port of your http server.
 
 Faculty Head
 -----
