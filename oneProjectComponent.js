@@ -16,6 +16,7 @@ class OneProject extends React.Component {
     if (this.state.isLoaded)
       return (
         <div>
+          <hr />
           <h3>{this.props.id || ''}. {this.state.title || 'No title'}</h3>
           <div className="tab">
             <p><b>Description: </b><br />{this.state.description || 'No description'}</p>
@@ -25,9 +26,8 @@ class OneProject extends React.Component {
               <iframe src={this.state.pptPreview} width="640" height="360"></iframe>
             </div>
           </div>
-          <hr />
         </div >
-      );
+      );  
     else
       return (
         <p> Not loaded yet.</p >
@@ -44,4 +44,4 @@ var runReact = () => {
       ReactDOM.render(<OneProject details={details} id={number} />, domContainer);
     });
 }
-runReact()
+// runReact()
