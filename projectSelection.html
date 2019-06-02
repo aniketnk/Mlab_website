@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Project Selection</title>
+  <link rel="stylesheet" href="css/projectSelectionCustom.css">
+</head>
+
+<body>
+  <div id='content' class="container">
+    <h1>Project List</h1>
+    <hr />
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </div>
+
+  <div id='form-content' class="container">
+    <p>TODO: Add the form here</p>
+    <!-- ProjectNames array is already fetched. -->
+  </div>
+
+  <script src="oneProjectComponent.js" type='text/babel'></script>
+  <script type="module">
+    import * as config from "./js/config.js";
+    var domContent = document.getElementById('content');
+    // TODO: fetch the user's Token and groupName from localStorage
+    var groupName = "test1"
+    var token = "jwtToken"
+    fetch(config.getApiPath() + "api/v1/intern/allProjects/" + groupName + '?token=' + token)
+      .then((response) => { return response.json() })
+      .then((response) => {
+        var projectNames = []
+        var count = 1
+        for (var project of response) {
+          projectNames.push(project.title)
+          var projectComponent = document.createElement("div")
+          projectComponent.className = "oneProject"
+          projectComponent.dataset.details = JSON.stringify(project)
+          projectComponent.dataset.id = count
+          domContent.appendChild(projectComponent)
+          count += 1
+        }
+        runReact()
+      })
+  </script>
+
+
+</body>
+
+</html>
