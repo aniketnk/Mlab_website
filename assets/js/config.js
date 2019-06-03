@@ -3,7 +3,7 @@ const devPath = "http://localhost:5000/mil-website/us-central1/app/";
 
 const config = {
     apiPath: prodPath,
-    appStatus: false
+    appStatus: true,
 }
 
 export function getApiPath() {
@@ -11,5 +11,5 @@ export function getApiPath() {
 }
 
 export function isAppLive() {
-    return config.appStatus;
+    return true;
 }
