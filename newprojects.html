@@ -39,32 +39,33 @@
     <script src="js/jquery.min.js"></script>
 
     <script type="module">
-      import * as config from "./js/config.js";
+      import * as config from "./assets/js/config.js";
 
       $("#upload").bind("click", function () {
-        // console.log("Button clicked!")
+        console.log("Button clicked!")
         var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
         if (regex.test($("#fileUpload").val().toLowerCase())) {
             if (typeof (FileReader) != "undefined") {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    // console.log("READY TO READ!")
-                    var rows = e.target.result.split("\n");
-                    // console.log(rows.length)
+                    console.log("READY TO READ!")
+                    var rows = e.target.result.split(",^^");
+                    console.log("ROWS")
+                    console.log(rows)
                     for (var i = 0; i < rows.length-1; i++) {
-                        // var row = $("<tr />");
-                        var cells = rows[i].split(",");
+                        var cells = rows[i].split(",##,");
+                        console.log("CELLS")
                         var data = {
                           title: cells[0] && cells[0].trim(),
                           domain: cells[1] && cells[1].trim(),
-                          description: cells[2] && cells[2].trim() + "",
-                          pptLink: (cells[3] && cells[3].trim()) || "",
+                          pptLink: (cells[2] && cells[2].trim()) || "",
+                          groupName: (cells[3] && cells[3].trim()) || "",
+                          description: (cells[4] && cells[4].trim()) || "",
                         }
-                        // console.log(data)
-                        fetch(config.getApiPath() + "api/v1/addProject", {
+                        fetch(config.getApiPath() + "api/v1/intern/newProject", {
                           method: "POST",
                           mode: "cors",
-                          headers: new Headers(),
+                          headers: new Headers({"x-access-token":"Enter token here"}),
                           body: JSON.stringify(data)
                         })
                           .then(res => {
