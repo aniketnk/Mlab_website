@@ -92,6 +92,7 @@
               .then((res) => {
                   console.log(res);
                   sessionStorage.setItem("token", res.token);
+                  sessionStorage.setItem("groups", res.groups);
                   document.location.replace(window.location.pathname.replace("authenticate.html", "projectSelection.html"));
               })
               .catch((err) => {
