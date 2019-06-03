@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="no-js oldie" lang="en"> <![endif]-->
+<!--[if IE 9]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+  <!--<![endif]-->
+
+  <head>
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8" />
+    <title>Mlab Project list</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/vendor.css" />
+    <link rel="stylesheet" href="css/main.css" />
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+    <script src="js/pace.min.js"></script>
+    <!-- favicons
+    ================================================== -->
+    <link
+      rel="shortcut icon"
+      href="images/Mlab_logo_white.png"
+      type="image/x-icon"
+    />
+    <link rel="icon" href="images/Mlab_logo_white.png" type="image/x-icon" />
+    <output id="files"></output>
+    <script src="js/jquery.min.js"></script>
+  </head>
+
+  <body id="top">
+
+     <!-- home
+    ================================================== -->
+    <section
+      id="banner"
+      class="s-home target-section"
+      data-parallax="scroll"
+      data-image-src="images/background1.jpg"
+      data-natural-width="3000"
+      data-natural-height="2000"
+      data-position-y="center"
+    >
+      <div class="overlay"></div>
+      <div class="shadow-overlay"></div>
+
+
+      <div class="home-content">
+        <div class="row home-content__main">
+          <h2>Redirecting.....</h2>
+            </div>
+        </div>
+
+      </div>
+      <!-- end home-content -->
+    </section>
+
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Page Title</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script type="module">
+          import * as config from "./assets/js/config.js";
+          const returnedUrl = new URL(window.location.href + "");
+          var sig = returnedUrl.searchParams.get("sig") + "";
+          var sso = returnedUrl.searchParams.get("sso") + "";
+          fetch(config.getApiPath() + 'api/v1/signin', {
+              method: 'POST',
+              mode: "cors",
+              headers: new Headers(),
+              body: JSON.stringify({ sso, sig })
+          })
+              .then((res) => {
+                  console.log(res);
+                  if (res.status === 200)
+                      return res.json();
+                  else
+                      throw "Api call unsuccessful";
+              })
+              .then((res) => {
+                  console.log(res);
+                  sessionStorage.setItem("token", res.token);
+                  document.location.replace(window.location.pathname.replace("authenticate.html", "projectSelection.html"));
+              })
+              .catch((err) => {
+                  // TODO: proper error handling
+                  console.log("err: " + err)
+                  alert(err);
+                  window.location.replace('/');
+              });
+      </script>
+
+  </head>
+
+
+
+
+    <!-- header
+        ================================================== -->
+
+    <header class="s-header">
+      <div class="header-logo">
+        <a class="site-logo" href="index.html">
+          <img id="logo" src="images/Mlab_logo_black.png" alt="Homepage" />
+        </a>
+      </div>
+
+      <nav class="header-nav">
+        <a href="#0" class="header-nav__close" title="close"
+          ><span>Close</span></a
+        >
+
+        <div class="header-nav__content">
+          <h3>Navigation</h3>
+
+          <ul class="header-nav__list">
+            <li class="current">
+              <a class="smoothscroll" href="#home" title="home">Home</a>
+            </li>
+            <li>
+              <a class="smoothscroll" href="#about" title="about">About</a>
+            </li>
+            <li>
+              <a class="smoothscroll" href="#services" title="internship"
+                >Internship</a
+              >
+            </li>
+            <li>
+              <a href="achievements.html" title="achievements">Achievements</a>
+            </li>
+            <li>
+              <a class="smoothscroll" href="#clients" title="members"
+                >Professors</a
+              >
+            </li>
+            <li>
+              <a class="smoothscroll" href="#contact" title="contact"
+                >Contact Us</a
+              >
+            </li>
+          </ul>
+
+          <p>
+            Follow us on social media and get to know about the events and other
+            updates by <strong> Microsoft Innovation Lab </strong>.
+          </p>
+
+          <ul class="header-nav__social">
+            <li>
+              <a href="https://www.facebook.com/microsoftlabpes/?ref=br_rs"
+                ><i class="fa fa-facebook"></i
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://instagram.com/mlab_pes?utm_source=ig_profile_share&igshid=1olmp1umaa1h4"
+                ><i class="fa fa-instagram"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+        <!-- end header-nav__content -->
+      </nav>
+      <!-- end header-nav -->
+
+      <a class="header-menu-toggle" href="#0">
+        <span class="header-menu-text">Menu</span>
+        <span class="header-menu-icon"></span>
+      </a>
+    </header>
+    <!-- end s-header -->
+
+    <!-- Java Script
+          ================================================== -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

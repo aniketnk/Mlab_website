@@ -11,5 +11,5 @@ export function getApiPath() {
 }
 
 export function isAppLive() {
-    return true;
+    return config.appStatus;
 }
